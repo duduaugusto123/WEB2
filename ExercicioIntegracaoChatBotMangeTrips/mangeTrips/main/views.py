@@ -150,6 +150,7 @@ def convertToMessage(data,attributeName):
     return response
 
 class ChatBotAPIView(APIView):
+   
     def post(self, request):
         data = request.data
         question = data.get('question')
@@ -211,3 +212,25 @@ class ChatBotAPIView(APIView):
                
         return JsonResponse(status=201, data=serializedAnswer.data)
 
+class ConversationHistoryView(ModelViewSet):
+
+    queryset = ConversationHistory.objects.all()
+    serializer_class = ConversationHistorySerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    ordering_fields = '__all__' 
+
+    def get_queryset(self):
+        
+            historyId = self.request.query_params['historyId']
+
+            
+
+            if(historyId == ''):
+                return JsonResponse(status=400,data={'content': 'Missing required parameter historyId'})
+            else:
+                try:
+                    return ConversationHistory.objects.filter(user__pk=historyId)
+                    
+
+                except ObjectDoesNotExist:
+                    return JsonResponse(status=500,data={'content': 'Histórico não encontrado!'})

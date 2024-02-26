@@ -11,6 +11,8 @@ router.register(r'customUser',CustomUserView)
 router.register(r'booking',BookingView)
 router.register(r'payment',PaymentView)
 router.register(r'availability',AvailabilityView)
+router.register(r'conversation',ConversationHistoryView)
+
 
 urlpatterns = router.urls
 urlpatterns.append( path('tripScore/<int:tripId>/', ScoreAverageView.as_view(), name='trip-score-average'))
