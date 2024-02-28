@@ -11,7 +11,8 @@ router.register(r'customUser',CustomUserView)
 router.register(r'booking',BookingView)
 router.register(r'payment',PaymentView)
 router.register(r'availability',AvailabilityView)
-router.register(r'conversation',ConversationHistoryView)
+router.register(r'conversationhistory',ConversationHistoryView)
+router.register(r'conversation',ConversationView)
 
 
 urlpatterns = router.urls

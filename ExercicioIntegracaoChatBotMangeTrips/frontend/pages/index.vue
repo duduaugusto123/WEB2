@@ -45,7 +45,7 @@
 
 //armazena em tela o histórico das mensagens
 const conversationHistory = ref([])
-const {data:ConversationHistory} = await useFetch('http://localhost:8000/conversation/?historyId=1')
+
 
 </script>
 
@@ -63,9 +63,7 @@ const {data:ConversationHistory} = await useFetch('http://localhost:8000/convers
             <h5>Bard: 😎</h5>
             <p> {{ response }} </p>
         </div>
-        <div class="conteinerSideBar" v-for="(ConversaHistoria,index) in ConversationHistory.results" :key="index">
-            <h5>{{ConversaHistoria.lastCommand}}</h5>
-        </div>
+        <SideBar></SideBar>
     </div>
 </template>
 

@@ -234,3 +234,10 @@ class ConversationHistoryView(ModelViewSet):
 
                 except ObjectDoesNotExist:
                     return JsonResponse(status=500,data={'content': 'Histórico não encontrado!'})
+                
+class ConversationView(ModelViewSet):
+
+    queryset = Conversation.objects.all()
+    serializer_class = ConversationSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    ordering_fields = '__all__' 
