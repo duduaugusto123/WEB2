@@ -1,4 +1,6 @@
 <script setup>
+    import SideBar from '~/components/SideBar.vue';
+
     let response = ref("")
     const dialog = reactive({
         text: '',
@@ -24,6 +26,24 @@
         );                
     });
     
+    const historyidreceived = (histid) =>{        
+        
+        console.log("HISTID:", histid);
+        dialog.historyId = histid;
+    }
+    var conversationIdsperConverseHistory = []
+    const { data: conversation } = await useFetch(`http://localhost:8000/conversation/`) 
+
+    for (x in conversation.id){
+        if(conversation.history.id == x){
+            conversationIdsperConverseHistory.push(x);
+            console.log("IDCONVERSASHISTORY",conversationIdsperConverseHistory);
+        }
+        console.log("CHEGOU AQUI?")
+    }
+    console.log(dialog.historyId)
+    
+
     const sendMessage = async () => {
         console.log(dialog.text);
         includeDialog('Q');
@@ -63,7 +83,8 @@ const conversationHistory = ref([])
             <h5>Bard: 😎</h5>
             <p> {{ response }} </p>
         </div>
-        <SideBar></SideBar>
+        <SideBar @SendHistoryId="historyidreceived"></SideBar>
+        
     </div>
 </template>
 

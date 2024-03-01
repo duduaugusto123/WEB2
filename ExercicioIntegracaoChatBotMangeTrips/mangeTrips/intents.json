@@ -48,6 +48,26 @@
                 "Certo, para onde iremos então?"
             ],            
             "command": "SEARCH_TRIP"
+        },
+        {
+            "tag": "sairprocurar",
+            "patterns": [
+                "Sair da Busca",
+                "sair",
+                "voltar ao menu principal",
+                "voltar",
+                "voltar ao menu",
+                "saida",
+                "exit",
+                "Exit",
+                "sai"
+            ],
+            "responses": [
+                "Ok sem problemas, Voltando ao menu principal!",
+                "Certo, saindo da procura de viagens...",
+                "É pra já, saindo da busca de viagens..."
+            ],            
+            "command": "EXIT_SEARCH_TRIP"
         }
         
     ]

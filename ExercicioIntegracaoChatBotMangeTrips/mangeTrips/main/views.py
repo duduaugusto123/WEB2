@@ -189,12 +189,20 @@ class ChatBotAPIView(APIView):
 
         newAnswer = None
         if conversationFound.lastCommand == 'SEARCH_TRIP':
-            trips = Trip.objects.filter(Q(title__icontains=question) | Q(description__icontains=question) | Q(city__icontains=question))
-            if trips.exists():
-                finalMessage = convertToMessage(trips,'title')
-            else:                
-                finalMessage = 'Infelizmente não encontramos a viagem que procura =/'
-            newAnswer = Conversation(type="A",message=finalMessage,history=conversationFound)
+            if answer.command == 'EXIT_SEARCH_TRIP':
+                print('SAIA')
+                conversationFound.lastCommand=''
+                conversationFound.save()
+            else:
+                trips = Trip.objects.filter(Q(title__icontains=question) | Q(description__icontains=question) | Q(city__icontains=question))
+                if trips.exists():
+                    finalMessage = convertToMessage(trips,'title')
+                else:                
+                    finalMessage = 'Infelizmente não encontramos a viagem que procura =/'
+                
+                newAnswer = Conversation(type="A",message=finalMessage,history=conversationFound)
+
+            
 
         elif answer.command == 'LIST_TRIPS':
             trips = Trip.objects.all()

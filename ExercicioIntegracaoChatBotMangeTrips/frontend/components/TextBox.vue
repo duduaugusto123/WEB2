@@ -6,20 +6,7 @@ const props = defineProps({
     type: { type: String }
 })
 
-/* modo de comunicar props e css mais indicado quando não há tantas variações
-const cardStyle = computed(()=> props.type === 'right' ? 
-    {
-        backColor: 'red',
-        fontSize: '1.5rem',
-        textColor: 'white'
-    } 
-: 
-    {
-        backColor: 'black',
-        fontSize: '3.5rem',
-        textColor: 'yellow'
-    }    
-)*/
+
 
 </script>
 
@@ -40,12 +27,6 @@ const cardStyle = computed(()=> props.type === 'right' ?
 </template>
 
 <style scoped lang="scss">
-/* modo de comunicar props e css mais indicado quando não há tantas variações
-    .p-fieldset{
-        background-color: v-bind(cardStyle.backColor);
-        font-size: v-bind(cardStyle.fontSize);
-        color: v-bind(cardStyle.textColor);
-    }*/
 
 .text-box {
 
